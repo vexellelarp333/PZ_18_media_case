@@ -1,1 +1,83 @@
-*,*::before,*::after{box-sizing:border-box}html,body{height:100%}body{position:relative;min-width:800px;height:inherit;margin:0;overflow:hidden;font-family:Arial,sans-serif;background:#171717;color:#fff}.page__video{position:absolute;inset:0;width:100%;height:100%;/* TODO object-fit/object-position */z-index:-2}body::before{/* TODO overlay */}.page__title{position:relative;z-index:1;margin:0;padding:10vh 8vw;font-size:clamp(52px,8vw,120px);line-height:.9;text-transform:uppercase}.page__mark{color:#d8ff55}.page__title:hover::after{/* TODO tooltip */}
+
+*, 
+*::before, 
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  position: relative;
+  min-width: 800px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+.page__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -2;
+}
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgb(15 4 32 / 0.75), rgb(34 9 51 / 0.6));
+  z-index: -1;
+}
+.page__title {
+  position: relative;
+  z-index: 1;
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-shadow: 0 0 10px rgba(255, 0, 128, 0.5), 0 0 20px rgba(255, 0, 128, 0.3);
+}
+.page__title::before {
+  content: "✦"; 
+  margin-right: 12px;
+  color: #ff007f;
+  text-shadow: 0 0 8px #ff007f, 0 0 15px #ff007f;
+}
+
+.page__title::after {
+  content: "ИНФОРМАЦИЯ\AДоступ разрешен";
+  white-space: pre;
+  
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 20px;
+  background: #00f0ff; 
+  color: #0b0214; 
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 0px; 
+  border-left: 4px solid #ff007f; 
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+  
+  /* Скрытие */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.page__title:hover::after {
+  opacity: 1;
+  visibility: visible;
+  top: 115%; 
+}
